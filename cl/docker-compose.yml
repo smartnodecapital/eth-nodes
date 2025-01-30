@@ -106,6 +106,45 @@ services:
     restart: "unless-stopped"
     stop_grace_period: 1m
 
+  lodestar:
+    image: chainsafe/lodestar:latest
+    hostname: consensus
+    command:
+      [
+        "beacon",
+        "--network=mainnet",
+        "--dataDir=/data",
+        "--rest",
+        "--rest.address=0.0.0.0",
+        "--rest.port=5052",
+        "--logFile=/logs/beacon.log",
+        "--logFileLevel=debug",
+        "--logFileDailyRotate=5",
+        "--port=9000",
+        "--execution.urls=http://execution:8551",
+        "--jwtSecret=/var/lib/lodestar/consensus/ee-secret/jwtsecret",
+        "--targetPeers=100",
+        "--builder",
+        "--builder.url=http://mev-boost:18550",
+        "--checkpointSyncUrl==https://beaconstate.ethstaker.cc",
+      ]
+    ports:
+      - "9000:9000/tcp"
+      - "9000:9000/udp"
+    # NodeJS applications have a default memory limit of 4GB on most machines.
+    # This limit is bit tight for a Mainnet node, it is recommended to raise the limit
+    # since memory may spike during certain network conditions.
+    environment:
+      NODE_OPTIONS: --max-old-space-size=8192
+    volumes:
+      - /data/lodestar:/data
+      - /data/lodestar-logs:/logs
+      - /data/jwtsecret:/var/lib/lodestar/consensus/ee-secret/jwtsecret
+    networks:
+      - eth
+    restart: "unless-stopped"
+    stop_grace_period: 1m
+
 networks:
   eth:
     name: eth
