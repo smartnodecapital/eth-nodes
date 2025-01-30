@@ -27,6 +27,13 @@ openssl rand -hex 32 | sudo tee /data/jwtsecret/jwt.hex > /dev/null
 comment out the client wanted (name & profile)
 * sudo nano el/docker-compose.override.yml
 * sudo nano cl/docker-compose.override.yml
+
+### Erigon
+make /data/erigon user 1000:1000
+```bash
+sudo chown 1000:1000 /data/erigon
+```
+
 ### start commands
 ```bash
   cd /opt/eth/el
@@ -43,3 +50,11 @@ sudo docker logs -f --details cl-consensus-1
 sudo docker logs -f --details mev-mev-boost-1
 ```
 add --tail=10 to start at the end 
+
+## Firewall
+```bash
+sudo ufw allow 9000
+sudo ufw allow 30303
+
+# erigon sudo ufw allow 42068
+```
