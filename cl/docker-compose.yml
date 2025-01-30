@@ -8,7 +8,7 @@ services:
         "--data-base-path=/opt/teku/data",
 #        "--validators-proposer-default-fee-recipient=YOUR_WALLET",
         "--ee-endpoint=http://execution:8551",
-        "--ee-jwt-secret-file=/data/jwtsecret/jwt.hex",
+        "--ee-jwt-secret-file=/var/lib/jwtsecret/jwt.hex",
         "--p2p-port=9000",
         "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
         "--p2p-peer-upper-bound=100",
@@ -26,7 +26,7 @@ services:
       - "JAVA_OPTS=-Xmx8g"
     volumes:
       - /data/teku:/opt/teku/data
-      - /data/jwtsecret:/data/jwtsecret
+      - /data/jwtsecret:/var/lib/jwtsecret
     ports:
       # Map the p2p port(9000) and REST API port(5051)
       - "9000:9000/tcp"
@@ -55,14 +55,14 @@ services:
         # "--quic-port=9001",
         "--target-peers=100",
         "--execution-endpoint=http://execution:8551",
-        "--execution-jwt=/data/jwtsecret/jwt.hex",
+        "--execution-jwt=/var/lib/jwtsecret/jwt.hex",
         "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
         "--builder=http://mev-boost:18550",
 #        "--suggested-fee-recipient=YOUR_WALLET",
       ]
     volumes:
       - /data/lighthouse:/opt/lighthouse/data
-      - /data/jwtsecret:/data/jwtsecret
+      - /data/jwtsecret:/var/lib/jwtsecret
     ports:
       - "9000:9000/tcp"
       - "9000:9000/udp"
@@ -88,13 +88,13 @@ services:
         "--p2p-tcp-port=9000", #default 13000
         "--p2p-udp-port=9000", #default 12000
         "--execution-endpoint=http://execution:8551",
-        "--jwt-secret=/data/jwtsecret/jwt.hex",
+        "--jwt-secret=/var/lib/jwtsecret/jwt.hex",
         "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
         "--http-mev-relay=http://mev-boost:18550",
       ]
     volumes:
       - /data/prysm:/opt/prysm/data
-      - /data/jwtsecret:/data/jwtsecret
+      - /data/jwtsecret:/var/lib/jwtsecret
     ports:
       - "9000:9000/tcp"
       - "9000:9000/udp"

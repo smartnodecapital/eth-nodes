@@ -2,6 +2,20 @@
 Docker setup Ethereum nodes
 
 ## Usage
+
+## install docker
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+```
+
+### make jwt.hex
+```bash
+sudo mkdir -p /data/jwtsecret
+openssl rand -hex 32 | sudo tee /data/jwtsecret/jwt.hex > /dev/null
+```
+
+
 ### init commands
 ```bash
   sudo git clone https://github.com/smartnodecapital/eth-nodes.git /opt/eth
