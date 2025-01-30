@@ -39,11 +39,11 @@ services:
     command:
       [
         "--mainnet",
-        "--datadir=/opt/geth/data",
+        "--datadir=/var/lib/geth",
         "--authrpc.addr=0.0.0.0",
-        # "--authrpc.vhosts=*",
-        # "--authrpc.port=8551",
-        "--authrpc.jwtsecret=/var/lib/jwtsecret/jwt.hex",
+        "--authrpc.vhosts=*",
+        "--authrpc.port=8551",
+        "--authrpc.jwtsecret=/var/lib/geth/ee-secret/jwtsecret",
         "--db.engine=pebble",
         "--ws",
         "--ws.addr=0.0.0.0",
@@ -53,8 +53,8 @@ services:
         "--http.port=8545",
       ]
     volumes:
-      - /data/geth:/opt/geth/data
-      - /data/jwtsecret:/var/lib/jwtsecret
+      - /data/geth:/var/lib/geth
+      - /data/jwtsecret:/var/lib/geth/ee-secret
     ports:
       - "30303:30303/tcp"
       - "30303:30303/udp"
