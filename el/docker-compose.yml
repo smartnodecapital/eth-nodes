@@ -68,14 +68,14 @@ services:
     hostname: execution
     command:
       [
-        "--datadir=/opt/erigon/data",
+        "--datadir=/home/erigon/.local/share/erigon",
         "--chain=mainnet",
         "--port=30303",
         "--p2p.allowed-ports=30303,30304,30305",
         "--authrpc.addr=0.0.0.0",
         "--authrpc.vhosts=*",
         "--authrpc.port=8551",
-        "--authrpc.jwtsecret=/var/lib/jwtsecret/jwt.hex",
+        "--authrpc.jwtsecret=/home/erigon/.local/share/erigon/secret/jwt.hex",
         "--http",
         "--http.addr=0.0.0.0",
         "--http.port=8545",
@@ -89,8 +89,8 @@ services:
         # "--private.api.addr=0.0.0.0:9090",
       ]
     volumes:
-      - /data/erigon:/opt/erigon/data
-      - /data/jwtsecret:/var/lib/jwtsecret
+      - /data/erigon:/home/erigon/.local/share/erigon
+      - /data/jwtsecret:/home/erigon/.local/share/erigon/secret
     ports:
       - "30303:30303/tcp"
       - "30303:30303/udp"
