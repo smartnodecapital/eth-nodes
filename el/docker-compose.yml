@@ -87,6 +87,7 @@ services:
 #       Do we need this?
         "--torrent.port=42069",
         "--torrent.download.rate=100mb",
+        "--downloader.disable.ipv6",
         # "--private.api.addr=0.0.0.0:9090",
       ]
     volumes:
