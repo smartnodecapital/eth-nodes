@@ -10,4 +10,3 @@ services:
   erigon:
     # Disable erigon
     profiles: [disable]
-  
