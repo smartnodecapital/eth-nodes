@@ -1,0 +1,111 @@
+services:
+  teku:
+    image: consensys/teku:latest
+    hostname: consensus
+    command:
+      [
+        "--network=mainnet",
+        "--data-base-path=/var/lib/teku/data",
+#        "--validators-proposer-default-fee-recipient=YOUR_WALLET",
+        "--ee-endpoint=http://execution:8551",
+        "--ee-jwt-secret-file=/data/jwtsecret/jwt.hex",
+        "--p2p-port=9000",
+        "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
+        "--p2p-peer-upper-bound=100",
+        "--p2p-peer-lower-bound=64",
+        "--rest-api-host-allowlist=*",
+        "--rest-api-enabled=true",
+        "--rest-api-docs-enabled=true",
+        "--rest-api-interface=0.0.0.0",
+        "--rest-api-port=5052",
+        "--beacon-liveness-tracking-enabled=true",
+        "--validators-builder-registration-default-enabled=true",
+        "--builder-endpoint=http://mev-boost:18550",
+      ]
+    environment:
+      - "JAVA_OPTS=-Xmx8g"
+    volumes:
+      - /data/teku:/var/lib/teku/data
+      - /data/jwtsecret:/data/jwtsecret
+    ports:
+      # Map the p2p port(9000) and REST API port(5051)
+      - "9000:9000/tcp"
+      - "9000:9000/udp"
+#      - "5051:5051"
+    networks:
+      - eth
+    restart: unless-stopped
+    stop_grace_period: 1m
+    
+  lighthouse:
+    image: sigp/lighthouse:latest
+    hostname: consensus
+    command:
+      [
+        "lighthouse",
+        "bn",
+        "--network=mainnet",
+        "--datadir=/var/lib/lighthouse/data",
+        "--http",
+        "--http-address=0.0.0.0",
+        "--http-port=5052",
+        "--http-allow-origin=*",
+        "--listen-address=0.0.0.0",
+        "--port=9000",
+        # "--quic-port=9001",
+        "--target-peers=100",
+        "--execution-endpoint=http://execution:8551",
+        "--execution-jwt=/data/jwtsecret/jwt.hex",
+        "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
+        "--builder=http://mev-boost:18550",
+#        "--suggested-fee-recipient=YOUR_WALLET",
+      ]
+    volumes:
+      - /data/lighthouse:/var/lib/lighthouse/data
+      - /data/jwtsecret:/data/jwtsecret
+    ports:
+      - "9000:9000/tcp"
+      - "9000:9000/udp"
+      # - "9001:9001/tcp"
+      # - "9001:9001/udp"
+    networks:
+      - eth   
+    restart: "unless-stopped"
+    stop_grace_period: 1m
+
+  prysm:
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:latest
+    hostname: consensus
+    command:
+      [
+        "--mainnet",
+        "--accept-terms-of-use=true",
+        "--datadir=/var/lib/prysm/data",
+        "--http-host=0.0.0.0",
+        "--http-port=5052",
+        "--http-cors-domain=*", # this might need work
+        # "--p2p-quic-port=9000", #defail 13000
+        "--p2p-tcp-port=9000", #default 13000
+        "--p2p-udp-port=9000", #default 12000
+        "--execution-endpoint=http://execution:8551",
+        "--jwt-secret=/data/jwtsecret/jwt.hex",
+        "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
+        "--http-mev-relay=http://mev-boost:18550",
+      ]
+    volumes:
+      - /data/prysm:/var/lib/prysm/data
+      - /data/jwtsecret:/data/jwtsecret
+    ports:
+      - "9000:9000/tcp"
+      - "9000:9000/udp"
+      # - "9001:9001/tcp"
+      # - "9001:9001/udp"
+      # - 127.0.0.1:4000:4000 # rpc stuff
+    networks:
+      - eth   
+    restart: "unless-stopped"
+    stop_grace_period: 1m
+
+networks:
+  eth:
+    name: eth

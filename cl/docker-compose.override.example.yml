@@ -1,0 +1,13 @@
+services:
+  teku:
+    # Disable teku
+    profiles: [disable]
+
+  lighthouse:
+    # Disable lighthouse
+    profiles: [disable]
+
+  prysm:
+    # Disable prysm
+    profiles: [disable]
+  

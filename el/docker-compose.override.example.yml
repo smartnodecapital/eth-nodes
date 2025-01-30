@@ -1,0 +1,13 @@
+services:
+  besu:
+    # Disable besu
+    profiles: [disable]
+
+  geth:
+    # Disable geth
+    profiles: [disable]
+
+  erigon:
+    # Disable erigon
+    profiles: [disable]
+  

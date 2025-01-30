@@ -1,0 +1,108 @@
+services:
+  besu:
+    image: hyperledger/besu:latest
+    hostname: execution
+    environment:
+      - "JAVA_OPTS=-Xmx8g"
+    command:
+      [
+        "--network=mainnet",
+        "--data-path=/var/lib/besu/data",
+        "--host-allowlist=*",
+        "--rpc-http-enabled",
+        "--rpc-http-cors-origins=*",
+        "--rpc-http-api=ETH,NET,CLIQUE,DEBUG,MINER,NET,PERM,ADMIN,EEA,TXPOOL,PRIV,WEB3",
+        "--engine-jwt-secret=/data/jwtsecret/jwt.hex",
+        "--engine-host-allowlist=*",
+        "--engine-rpc-enabled=true",
+        "--p2p-port=30303",
+        "--rpc-ws-port=8546",
+      ]
+    volumes:
+      - /data/besu:/var/lib/besu/data
+      - /data/jwtsecret:/data/jwtsecret
+    ports:
+      # Map the p2p port(30303), RPC HTTP port(8545), and engine port (8551)
+#      - "8545:8545"
+#      - "8546:8546"
+#      - "8551:8551"
+      - "30303:30303/tcp"
+      - "30303:30303/udp"
+    networks:
+        - eth
+    restart: unless-stopped
+    stop_grace_period: 1m
+
+  geth:
+    image: ethereum/client-go:latest
+    hostname: execution
+    command:
+      [
+        "--mainnet",
+        "--datadir=/var/lib/geth/data",
+        "--authrpc.addr=0.0.0.0",
+        # "--authrpc.vhosts=*",
+        # "--authrpc.port=8551",
+        "--authrpc.jwtsecret=/data/jwtsecret/jwt.hex",
+        "--db.engine=pebble",
+        "--ws",
+        "--ws.addr=0.0.0.0",
+        "--ws.port=8546",
+        "--http",
+        "--http.addr=0.0.0.0",
+        "--http.port=8545",
+      ]
+    volumes:
+      - /data/geth:/var/lib/geth/data
+      - /data/jwtsecret:/data/jwtsecret
+    ports:
+      - "30303:30303/tcp"
+      - "30303:30303/udp"
+    networks:
+        - eth
+    restart: unless-stopped
+    stop_grace_period: 1m
+
+  erigon:
+    image: erigontech/erigon:latest
+    hostname: execution
+    command:
+      [
+        "--datadir=/var/lib/erigon/data",
+        "--chain=mainnet",
+        "--port=30303",
+        "--p2p.allowed-ports=30303,30304,30305",
+        "--authrpc.addr=0.0.0.0",
+        "--authrpc.vhosts=*",
+        "--authrpc.port=8551",
+        "--authrpc.jwtsecret=/data/jwtsecret/jwt.hex",
+        "--http",
+        "--http.addr=0.0.0.0",
+        "--http.port=8545",
+        "--http.vhosts=*",
+        "--http.corsdomain=*",
+        "--ws",
+        "--ws.port=8546", # double check if works
+        "--maxpeers=100",
+#       Do we need this?
+        # "--torrent.port=42069",
+        # "--private.api.addr=0.0.0.0:9090",
+      ]
+    volumes:
+      - /data/erigon:/var/lib/erigon/data
+      - /data/jwtsecret:/data/jwtsecret
+    ports:
+      - "30303:30303/tcp"
+      - "30303:30303/udp"
+      - "30304:30304/tcp"
+      - "30304:30304/udp"
+      - "30305:30305/tcp"
+      - "30305:30305/udp"
+    networks:
+      - eth   
+    restart: "unless-stopped"
+    stop_grace_period: 1m
+
+networks:
+  eth:
+    name: eth
