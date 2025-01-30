@@ -10,3 +10,7 @@ services:
   erigon:
     # Disable erigon
     profiles: [disable]
+
+  nethermind:
+    # Disable nethermind
+    profiles: [disable]

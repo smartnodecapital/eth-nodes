@@ -10,3 +10,7 @@ services:
   prysm:
     # Disable prysm
     profiles: [disable]
+
+  lodestar:
+    # Disable lodestar
+    profiles: [ disable ]
