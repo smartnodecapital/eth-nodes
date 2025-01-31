@@ -58,6 +58,8 @@ services:
         "--execution-jwt=/var/lib/lighthouse/beacon/ee-secret/jwtsecret",
         "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
         "--builder=http://mev-boost:18550",
+        "--disable-backfill-rate-limiting",
+        "--disable-self-limiter",
 #        "--suggested-fee-recipient=YOUR_WALLET",
       ]
     volumes:
