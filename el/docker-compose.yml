@@ -88,6 +88,8 @@ services:
         "--torrent.port=42069",
         "--torrent.download.rate=100mb",
         "--downloader.disable.ipv6",
+        "--prune=htc", # V2 full node sync
+        "--prune.r.before=11052984", # v2 full node sync based on ethd
         # "--private.api.addr=0.0.0.0:9090",
       ]
     volumes:
