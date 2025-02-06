@@ -44,11 +44,7 @@ sudo chown 1000:1000 /data/erigon
   sudo docker compose up -d
 ```
 ### monitor containers
-```bash
-sudo docker logs -f --details el-execution-1
-sudo docker logs -f --details cl-consensus-1
-sudo docker logs -f --details mev-mev-boost-1
-```
+sudo docker compose logs -f
 add --tail=10 to start at the end 
 
 ## Firewall
