@@ -56,9 +56,10 @@ services:
         "--http",
         "--http.addr=0.0.0.0",
         "--http.port=8545",
-        "--metrics",
-        "--metrics.addr=0.0.0.0",
-        "--metrics.port=6060",
+        "--http.corsdomain=*",
+#        "--metrics",
+#        "--metrics.addr=0.0.0.0",
+#        "--metrics.port=6060",
       ]
     volumes:
       - /data/geth:/var/lib/geth
