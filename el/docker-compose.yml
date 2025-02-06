@@ -132,6 +132,8 @@ services:
         "--Network.MaxActivePeers=25",
         #        "--HealthChecks.Enabled=true",
         #        "--HealthChecks.UIEnabled=true",
+        "--Metrics.Enabled=true",
+        "--Metrics.PushGatewayUrl=http://monitoring:9091",
       ]
     volumes:
       - /data/nethermind:/execution_data

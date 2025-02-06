@@ -2,15 +2,23 @@ services:
   besu:
     # Disable besu
     profiles: [disable]
+    #extra_hosts:
+    #  monitoring: 1.2.3.4
 
   geth:
     # Disable geth
     profiles: [disable]
+    #extra_hosts:
+    #  monitoring: 1.2.3.4
 
   erigon:
     # Disable erigon
     profiles: [disable]
+    #extra_hosts:
+    #  monitoring: 1.2.3.4
 
   nethermind:
     # Disable nethermind
     profiles: [disable]
+    #extra_hosts:
+    #  monitoring: 1.2.3.4
