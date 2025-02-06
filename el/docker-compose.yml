@@ -58,6 +58,7 @@ services:
         "--http.port=8545",
         "--metrics",
         "--metrics.addr=0.0.0.0",
+        "--metrics.port=6060",
       ]
     volumes:
       - /data/geth:/var/lib/geth
