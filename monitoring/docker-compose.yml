@@ -20,6 +20,37 @@ services:
     networks:
       - eth
 
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - /data/loki-data:/tmp
+    restart: "unless-stopped"
+    networks:
+      - eth
+
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - /var/log:/var/log
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - eth
+
+  ethereum-metrics-exporter:
+    image: ethpandaops/ethereum-metrics-exporter:latest
+    ports:
+      - "9090:9090"
+    command:
+      [
+        "--consensus-url=http://consensus:5052",
+        "--execution-url=http://execution:8545",
+      ]
+    networks:
+      - eth
+
 networks:
   eth:
     name: eth
