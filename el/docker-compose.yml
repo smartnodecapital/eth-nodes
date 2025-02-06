@@ -57,6 +57,7 @@ services:
         "--http.addr=0.0.0.0",
         "--http.port=8545",
         "--metrics",
+        "--metrics.addr=0.0.0.0",
       ]
     volumes:
       - /data/geth:/var/lib/geth
