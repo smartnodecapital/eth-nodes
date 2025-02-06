@@ -11,12 +11,17 @@ services:
         "--host-allowlist=*",
         "--rpc-http-enabled",
         "--rpc-http-cors-origins=*",
+        "--rpc-http-host=0.0.0.0",
+        "--rpc-http-port=8545",
         "--rpc-http-api=ETH,NET,CLIQUE,DEBUG,MINER,NET,PERM,ADMIN,EEA,TXPOOL,PRIV,WEB3",
+        "--rpc-ws-enabled",
+        "--rpc-ws-host=0.0.0.0",
+        "--rpc-ws-port=8546",
+        "--max-peers=25",
         "--engine-jwt-secret=/var/lib/jwtsecret/jwt.hex",
         "--engine-host-allowlist=*",
         "--engine-rpc-enabled=true",
         "--p2p-port=30303",
-        "--rpc-ws-port=8546",
       ]
     volumes:
       - /data/besu:/opt/besu/data
@@ -83,7 +88,7 @@ services:
         "--http.corsdomain=*",
         "--ws",
         "--ws.port=8546", # double check if works
-        "--maxpeers=100",
+        "--maxpeers=25",
 #       Do we need this?
         "--torrent.port=42069",
         "--torrent.download.rate=100mb",
@@ -124,7 +129,7 @@ services:
         "--JsonRpc.JwtSecretFile=/jwtsecret/jwt.hex",
         "--Network.DiscoveryPort=30303",
         "--Network.P2PPort=30303",
-        "--Network.MaxActivePeers=100",
+        "--Network.MaxActivePeers=25",
         #        "--HealthChecks.Enabled=true",
         #        "--HealthChecks.UIEnabled=true",
       ]

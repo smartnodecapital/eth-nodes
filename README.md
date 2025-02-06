@@ -58,3 +58,16 @@ sudo ufw allow 30303
 
 # erigon sudo ufw allow 42068
 ```
+
+## config clients
+
+### consensus / Beacon node / ETH2
+```
+http://consensus:5052
+```
+
+### execution / ETH1
+```
+ws://execution:8546
+http://execution:8545
+```
