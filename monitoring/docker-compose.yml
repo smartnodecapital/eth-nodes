@@ -2,6 +2,7 @@ services:
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
+    hostname: node-exporter
     restart: unless-stopped
     volumes:
       - /proc:/host/proc:ro
@@ -22,6 +23,7 @@ services:
 
   loki:
     image: grafana/loki:latest
+    hostname: loki
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
@@ -33,6 +35,7 @@ services:
 
   promtail:
     image: grafana/promtail:latest
+    hostname: promtail
     volumes:
       - /var/log:/var/log
     command: -config.file=/etc/promtail/config.yml
@@ -41,6 +44,7 @@ services:
 
   ethereum-metrics-exporter:
     image: ethpandaops/ethereum-metrics-exporter:latest
+    hostname: ethereum-metrics-exporter
     ports:
       - "9090:9090"
     command:

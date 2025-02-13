@@ -57,6 +57,7 @@ services:
         "--http.addr=0.0.0.0",
         "--http.port=8545",
         "--http.corsdomain=*",
+        "--http.vhosts=*",
 #        "--metrics",
 #        "--metrics.addr=0.0.0.0",
 #        "--metrics.port=6060",
