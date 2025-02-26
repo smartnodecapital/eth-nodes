@@ -28,6 +28,17 @@ comment out the client wanted (name & profile)
 * sudo nano el/docker-compose.override.yml
 * sudo nano cl/docker-compose.override.yml
 
+### If not running mainnet edit .env files
+```bash
+  cd /opt/eth
+  sudo cp el/example.env el/.env
+  sudo cp cl/example.env cl/.env
+  sudo cp mev/example.env mev/.env
+```
+* sudo nano el/.env
+* sudo nano cl/.env
+* sudo nano mev/.env
+
 ### Erigon
 make /data/erigon user 1000:1000
 ```bash
