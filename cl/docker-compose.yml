@@ -4,13 +4,13 @@ services:
     hostname: consensus
     command:
       [
-        "--network=mainnet",
+        "--network=${NETWORK:-mainnet}",
         "--data-base-path=/opt/teku/data",
 #        "--validators-proposer-default-fee-recipient=YOUR_WALLET",
         "--ee-endpoint=http://execution:8551",
         "--ee-jwt-secret-file=/var/lib/jwtsecret/jwt.hex",
         "--p2p-port=9000",
-        "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
+        "--checkpoint-sync-url=https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
         "--p2p-peer-upper-bound=100",
         "--p2p-peer-lower-bound=64",
         "--rest-api-host-allowlist=*",
@@ -44,7 +44,7 @@ services:
       [
         "lighthouse",
         "bn",
-        "--network=mainnet",
+        "--network=${NETWORK:-mainnet}",
         "--datadir=/var/lib/lighthouse",
         "--http",
         "--http-address=0.0.0.0",
@@ -56,7 +56,7 @@ services:
         "--target-peers=100",
         "--execution-endpoint=http://execution:8551",
         "--execution-jwt=/var/lib/lighthouse/beacon/ee-secret/jwtsecret",
-        "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
+        "--checkpoint-sync-url=https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
         "--builder=http://mev-boost:18550",
         "--disable-backfill-rate-limiting",
         "--disable-self-limiter",
@@ -80,7 +80,7 @@ services:
     hostname: consensus
     command:
       [
-        "--mainnet",
+        "--${NETWORK:-mainnet}",
         "--accept-terms-of-use=true",
         "--datadir=/opt/prysm/data",
         "--http-host=0.0.0.0",
@@ -91,7 +91,7 @@ services:
         "--p2p-udp-port=9000", #default 12000
         "--execution-endpoint=http://execution:8551",
         "--jwt-secret=/var/lib/jwtsecret/jwt.hex",
-        "--checkpoint-sync-url=https://beaconstate.ethstaker.cc",
+        "--checkpoint-sync-url=https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
         "--http-mev-relay=http://mev-boost:18550",
       ]
     volumes:
@@ -114,7 +114,7 @@ services:
     command:
       [
         "beacon",
-        "--network=mainnet",
+        "--network=${NETWORK:-mainnet}",
         "--dataDir=/data",
         "--rest",
         "--rest.address=0.0.0.0",
@@ -128,7 +128,7 @@ services:
         "--targetPeers=100",
         "--builder",
         "--builder.url=http://mev-boost:18550",
-        "--checkpointSyncUrl==https://beaconstate.ethstaker.cc",
+        "--checkpointSyncUrl==https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
       ]
     ports:
       - "9000:9000/tcp"

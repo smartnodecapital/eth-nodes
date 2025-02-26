@@ -6,7 +6,7 @@ services:
       - "JAVA_OPTS=-Xmx8g"
     command:
       [
-        "--network=mainnet",
+        "--network=${NETWORK:-mainnet}",
         "--data-path=/opt/besu/data",
         "--host-allowlist=*",
         "--rpc-http-enabled",
@@ -43,7 +43,7 @@ services:
     hostname: execution
     command:
       [
-        "--mainnet",
+        "--${NETWORK:-mainnet}",
         "--datadir=/var/lib/geth",
         "--authrpc.addr=0.0.0.0",
         "--authrpc.vhosts=*",
@@ -79,7 +79,7 @@ services:
     command:
       [
         "--datadir=/home/erigon/.local/share/erigon",
-        "--chain=mainnet",
+        "--chain=${NETWORK:-mainnet}",
         "--port=30303",
         "--p2p.allowed-ports=30303,30304,30305",
         "--authrpc.addr=0.0.0.0",
@@ -122,6 +122,7 @@ services:
     hostname: execution
     command:
       [
+        "-c ${NETWORK:-mainnet}",
         "--Init.BaseDbPath=/execution_data",
         "--Init.WebSocketsEnabled=true",
         "--Sync.SnapSync=true",
