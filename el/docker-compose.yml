@@ -48,7 +48,7 @@ services:
         "--authrpc.addr=0.0.0.0",
         "--authrpc.vhosts=*",
         "--authrpc.port=8551",
-        "--authrpc.jwtsecret=/var/lib/geth/ee-secret/jwtsecret",
+        "--authrpc.jwtsecret=/var/lib/geth/ee-secret/jwtsecret/jwt.hex",
         "--db.engine=pebble",
         "--ws",
         "--ws.addr=0.0.0.0",
