@@ -104,7 +104,7 @@ services:
       ]
     volumes:
       - /data/erigon:/home/erigon/.local/share/erigon
-      - /data/jwtsecret:/home/erigon/.local/share/secret/secret
+      - /data/jwtsecret:/home/erigon/.local/share/secret
     ports:
       - "30303:30303/tcp"
       - "30303:30303/udp"

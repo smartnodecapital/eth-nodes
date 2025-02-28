@@ -55,7 +55,7 @@ services:
         # "--quic-port=9001",
         "--target-peers=100",
         "--execution-endpoint=http://execution:8551",
-        "--execution-jwt=/var/lib/lighthouse/beacon/ee-secret/jwtsecret/jwt.hex",
+        "--execution-jwt=/var/lib/lighthouse/beacon/ee-secret/jwt.hex",
         "--checkpoint-sync-url=https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
         "--builder=http://mev-boost:18550",
         "--disable-backfill-rate-limiting",
