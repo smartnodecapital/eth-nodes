@@ -85,7 +85,7 @@ services:
         "--authrpc.addr=0.0.0.0",
         "--authrpc.vhosts=*",
         "--authrpc.port=8551",
-        "--authrpc.jwtsecret=/home/erigon/.local/share/erigon/secret/jwt.hex",
+        "--authrpc.jwtsecret=/home/erigon/.local/share/secret/jwt.hex",
         "--http",
         "--http.addr=0.0.0.0",
         "--http.port=8545",
@@ -104,7 +104,7 @@ services:
       ]
     volumes:
       - /data/erigon:/home/erigon/.local/share/erigon
-      - /data/jwtsecret:/home/erigon/.local/share/erigon/secret
+      - /data/jwtsecret:/home/erigon/.local/share/secret/secret
     ports:
       - "30303:30303/tcp"
       - "30303:30303/udp"
