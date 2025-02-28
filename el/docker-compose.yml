@@ -122,7 +122,7 @@ services:
     hostname: execution
     command:
       [
-        "-c ${NETWORK:-mainnet}",
+        "--config=${NETWORK:-mainnet}",
         "--Init.BaseDbPath=/execution_data",
         "--Init.WebSocketsEnabled=true",
         "--Sync.SnapSync=true",
