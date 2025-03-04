@@ -31,7 +31,7 @@ services:
       # Map the p2p port(9000) and REST API port(5051)
       - "9000:9000/tcp"
       - "9000:9000/udp"
-#      - "5051:5051"
+      - "5052:5052"
     networks:
       - eth
     restart: unless-stopped
@@ -68,6 +68,7 @@ services:
     ports:
       - "9000:9000/tcp"
       - "9000:9000/udp"
+      - "5052:5052"
       # - "9001:9001/tcp"
       # - "9001:9001/udp"
     networks:
@@ -100,6 +101,7 @@ services:
     ports:
       - "9000:9000/tcp"
       - "9000:9000/udp"
+      - "5052:5052"
       # - "9001:9001/tcp"
       # - "9001:9001/udp"
       # - 127.0.0.1:4000:4000 # rpc stuff
@@ -133,6 +135,7 @@ services:
     ports:
       - "9000:9000/tcp"
       - "9000:9000/udp"
+      - "5052:5052"
     # NodeJS applications have a default memory limit of 4GB on most machines.
     # This limit is bit tight for a Mainnet node, it is recommended to raise the limit
     # since memory may spike during certain network conditions.

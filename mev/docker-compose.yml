@@ -11,6 +11,8 @@ services:
     networks:
       - eth
     restart: unless-stopped
+    ports:
+      - "18550:18550/tcp"
 
 networks:
   eth:
