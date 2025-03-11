@@ -64,7 +64,7 @@ services:
       ]
     volumes:
       - /data/geth:/var/lib/geth
-      - /data/jwtsecret:/var/lib/geth/ee-secret
+      - /data/jwtsecret:/var/lib/geth/ee-secret/jwtsecret
     ports:
       - "30303:30303/tcp"
       - "30303:30303/udp"
