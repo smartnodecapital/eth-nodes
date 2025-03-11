@@ -126,7 +126,7 @@ services:
         "--logFileDailyRotate=5",
         "--port=9000",
         "--execution.urls=http://execution:8551",
-        "--jwtSecret=/var/lib/lodestar/consensus/ee-secret/jwtsecret",
+        "--jwtSecret=/var/lib/lodestar/consensus/ee-secret/jwtsecret/jwt.hex",
         "--targetPeers=100",
         "--builder",
         "--builder.url=http://mev-boost:18550",
