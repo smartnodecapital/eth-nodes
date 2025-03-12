@@ -130,7 +130,7 @@ services:
         "--targetPeers=100",
         "--builder",
         "--builder.url=http://mev-boost:18550",
-        "--checkpointSyncUrl==https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
+        "--checkpointSyncUrl=https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
       ]
     ports:
       - "9000:9000/tcp"
