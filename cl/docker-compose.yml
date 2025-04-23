@@ -77,7 +77,7 @@ services:
     stop_grace_period: 1m
 
   prysm:
-    image: gcr.io/prysmaticlabs/prysm/beacon-chain:latest
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
     hostname: consensus
     command:
       [
