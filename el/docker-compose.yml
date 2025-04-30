@@ -39,7 +39,7 @@ services:
     stop_grace_period: 1m
 
   geth:
-    image: ethereum/client-go:latest
+    image: ethereum/client-go:stable
     hostname: execution
     command:
       [

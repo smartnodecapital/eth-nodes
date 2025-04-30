@@ -50,7 +50,7 @@ services:
         "--http-address=0.0.0.0",
         "--http-port=5052",
         "--http-allow-origin=*",
-        "--listen-address=0.0.0.0",
+        "--listen-address=0.0.0.0", #makes it IPv4 only :)
         "--port=9000",
         # "--quic-port=9001",
         "--target-peers=100",
