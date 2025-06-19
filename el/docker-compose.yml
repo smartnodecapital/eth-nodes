@@ -146,6 +146,8 @@ services:
         #        "--HealthChecks.UIEnabled=true",
         "--Metrics.Enabled=true",
         "--Metrics.PushGatewayUrl=http://monitoring:9091",
+        "--Pruning.CacheMb=2000",
+        "--Db.State.WriteBuffer=100000000",
       ]
     volumes:
       - /data/nethermind:/execution_data
