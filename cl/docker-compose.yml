@@ -1,6 +1,6 @@
 services:
   teku:
-    image: consensys/teku:latest
+    image: consensys/teku:${IMAGEVERSION:-latest}
     hostname: consensus
     command:
       [
@@ -38,7 +38,7 @@ services:
     stop_grace_period: 1m
     
   lighthouse:
-    image: sigp/lighthouse:latest
+    image: sigp/lighthouse:${IMAGEVERSION:-latest}
     hostname: consensus
     command:
       [
@@ -77,7 +77,7 @@ services:
     stop_grace_period: 1m
 
   prysm:
-    image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:${IMAGEVERSION:-stable}
     hostname: consensus
     command:
       [
@@ -94,6 +94,7 @@ services:
         "--jwt-secret=/var/lib/jwtsecret/jwt.hex",
         "--checkpoint-sync-url=https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
         "--http-mev-relay=http://mev-boost:18550",
+        "--p2p-max-peers=100",
       ]
     volumes:
       - /data/prysm:/opt/prysm/data
@@ -111,7 +112,7 @@ services:
     stop_grace_period: 1m
 
   lodestar:
-    image: chainsafe/lodestar:latest
+    image: chainsafe/lodestar:${IMAGEVERSION:-latest}
     hostname: consensus
     command:
       [
