@@ -1,0 +1,20 @@
+services:
+  lighthouse:
+    image: sigp/lighthouse:${IMAGEVERSION:-v7.1.0}
+    hostname: consensus
+    command:
+      [
+          "lighthouse",
+          "db",
+          "migrate",
+          "--to=26",
+          "--datadir=/var/lib/lighthouse",
+          "--network=${NETWORK:-mainnet}",
+      ]
+    volumes:
+      - /data/lighthouse:/var/lib/lighthouse
+      - /data/jwtsecret:/var/lib/lighthouse/beacon/ee-secret
+    ports:
+      - "9000:9000/tcp"
+      - "9000:9000/udp"
+      - "5052:5052"
