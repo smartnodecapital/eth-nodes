@@ -1,13 +1,13 @@
 services:
   lighthouse:
-    image: sigp/lighthouse:${IMAGEVERSION:-v7.1.0}
+    image: sigp/lighthouse:${IMAGEVERSION:-v7.0.1}
     hostname: consensus
     command:
       [
           "lighthouse",
           "db",
           "migrate",
-          "--to=26",
+          "--to=22",
           "--datadir=/var/lib/lighthouse",
           "--network=${NETWORK:-mainnet}",
       ]
