@@ -38,7 +38,7 @@ services:
     stop_grace_period: 1m
     
   lighthouse:
-    image: sigp/lighthouse:${IMAGEVERSION:-v7.0.1}
+    image: sigp/lighthouse:${IMAGEVERSION:-v8.0.0}
     hostname: consensus
     command:
       [
