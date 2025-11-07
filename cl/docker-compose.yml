@@ -87,7 +87,7 @@ services:
         "--http-host=0.0.0.0",
         "--http-port=5052",
         "--http-cors-domain=*", # this might need work
-        "--p2p-quic-port=9000", #defail 13000
+        #"--p2p-quic-port=9000", #defail 13000
         "--p2p-tcp-port=9000", #default 13000
         "--p2p-udp-port=9000", #default 12000
         "--execution-endpoint=http://execution:8551",
