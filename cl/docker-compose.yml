@@ -95,6 +95,7 @@ services:
         "--checkpoint-sync-url=https://beaconstate-${NETWORK:-mainnet}.chainsafe.io",
         "--http-mev-relay=http://mev-boost:18550",
         "--p2p-max-peers=100",
+        "--disable-last-epoch-targets",
       ]
     volumes:
       - /data/prysm:/opt/prysm/data
