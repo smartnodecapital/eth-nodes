@@ -38,7 +38,7 @@ services:
     stop_grace_period: 1m
     
   lighthouse:
-    image: sigp/lighthouse:${IMAGEVERSION:-v8.2.2}
+    image: sigp/lighthouse:${IMAGEVERSION:-v8.3.2}
     hostname: consensus
     command:
       [
@@ -139,8 +139,8 @@ services:
       - "9000:9000/tcp"
       - "9000:9000/udp"
       - "5052:5052"
-    # NodeJS applications have a default memory limit of 4GB on most machines.
-    # This limit is bit tight for a Mainnet node, it is recommended to raise the limit
+    # Node.js applications have a default memory limit of 4GB on most machines.
+    # This limit is a bit tight for a Mainnet node, it is recommended to raise the limit
     # since memory may spike during certain network conditions.
     environment:
       NODE_OPTIONS: --max-old-space-size=8192
